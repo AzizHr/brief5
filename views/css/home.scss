@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top-heading {
+    text-transform: capitalize;
+    position: absolute;
+    left: 100px;
+    top: 160px;
+    font-size: 60px;
+    &::first-letter{
+        width: 20px;
+        height: 100px;
+        background-color: rgb(255, 200, 124);
+        padding: 4px;
+        border-radius: 6px;
+    }
+}
+.heading {
+    text-transform: capitalize;
+    position: absolute;
+    left: 160px;
+    top: 236px;
+    font-size: 34px;
+    letter-spacing: 6px;
+}
+.main {
+    width: 70%;
+    height: 440px;
+    margin: 0 auto;
+    margin-top: 260px;
+    border-radius: 10px;
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+}
+.welcome-heading {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 34px;
+    text-transform: capitalize;
+}
+.cards {
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    column-gap: 10px;
+    .card {
+        width: 240px;
+        height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        flex-direction: column;
+        row-gap: 34px;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px grey;
+        img {
+            width: 94%;
+            border-radius: 10px;
+            height: 240px;
+        }
+    }
+}
+
+.about-us {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-between;
+    .image {
+        width: 50%;
+        border-radius: 6px;
+        img {
+            width: 100%;
+            border-radius: 6px;
+        }
+    }
+    .info {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 20px;
+        h1 {
+            text-transform: capitalize;
+            font-size: 30px;
+        }
+        p {
+            text-transform: capitalize;
+            line-height: 30px;
+            font-size: 18px;
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .main {
+        width: 84%;
+        height: 440px;
+        margin: 0 auto;
+        margin-top: 260px;
+        border-radius: 10px;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+    }
+    .welcome-heading {
+        font-size: 30px;
+    }
+    .cards {
+        flex-direction: column;
+        width: 96%;
+        row-gap: 40px;
+
+        .card {
+            width: 300px;
+            height: 440px;
+            align-items: center;
+            justify-content: space-around;
+            padding: 4px;
+            flex-direction: column;
+            row-gap: 34px;
+            img {
+                width: 94%;
+                border-radius: 10px;
+                height: 240px;
+            }
+        }
+    }
+    
+    .about-us {
+        width: 90%;
+        margin: 0 auto;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 140px;
+        row-gap: 40px;
+        .image {
+            width: 90%;
+            align-self: center;
+            img {
+                width: 100%;
+            }
+        }
+        .info {
+            align-self: center;
+            width: 90%;
+            h1 {
+                text-transform: capitalize;
+                font-size: 28px;
+            }
+            p {
+                text-transform: capitalize;
+                line-height: 28px;
+                font-size: 17px;
+            }
+        }
+    }
+}

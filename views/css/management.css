@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+table {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 100px;
+  text-align: center;
+}
+table tr td {
+  padding: 20px;
+}
+table tr td img {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 6px 0px rgb(158, 158, 158);
+}
+table tr td a {
+  padding: 10px;
+  border-radius: 6px;
+}
+table tr td .edit {
+  color: black;
+  background-color: yellow;
+}
+table tr td .trash {
+  color: white;
+  background-color: red;
+}/*# sourceMappingURL=management.css.map */
