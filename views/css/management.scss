@@ -17,17 +17,26 @@ table {
                 border-radius: 8px;
                 box-shadow: 0px 0px 6px 0px rgb(158, 158, 158);
             }
-            a {
-                padding: 10px;
-                border-radius: 6px;
-            }
             .edit {
                 color: black;
                 background-color: yellow;
+                padding: 10px;
+                border-radius: 6px;
+                border: none;
             }
             .trash {
                 color: white;
                 background-color: red;
+                padding: 10px;
+                border-radius: 6px;
+                border: none;
+            }
+            .add {
+                color: white;
+                background-color: green;
+                padding: 10px;
+                border-radius: 6px;
+                text-decoration: none;
             }
         }
     }

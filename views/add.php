@@ -1,6 +1,7 @@
+<?php require_once 'controllers/ProductController.php' ?>
 <link rel="stylesheet" href="views/css/add.css">
-<form>
-<h1 class="contact-heading">Add A Product</h1>
+<form method="POST">
+    <h1 class="contact-heading">Add New Product</h1>
     <div class="form-controll">
         <label>Product Image</label>
         <input type="file" name="image" class="file">

@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+    if(isset($_SESSION['logged'])) {
+         $flag = 'Logout';
+    }else {
+        $flag = 'Login';
+    }
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +25,15 @@
 <body>
     <nav class="nav">
         <a href="" class="logo">
-            <img src="views/images/logo.svg" alt="">
+            <img src="views/images/logo.png" alt="">
             Jewelry
         </a>
         <div class="hidden" id="menuContainer">
             <ul class="nav-menu">
                 <li class="menu-item"><a href="">Home</a></li>
                 <li class="menu-item"><a href="">Products</a></li>
-                <li class="menu-item"><a href="">About</a></li>
                 <li class="menu-item"><a href="">Contact</a></li>
-                <li class="menu-item"><a href="">Admin</a></li>
+                <li class="menu-item"><form method="post"><button name="logout" type="submit"><?php echo $flag; ?></button></form></li>
             </ul>
         </div>
         <a class="fa-solid fa-bars menu-icon"></a>

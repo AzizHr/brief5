@@ -19,15 +19,24 @@ table tr td img {
   border-radius: 8px;
   box-shadow: 0px 0px 6px 0px rgb(158, 158, 158);
 }
-table tr td a {
-  padding: 10px;
-  border-radius: 6px;
-}
 table tr td .edit {
   color: black;
   background-color: yellow;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
 }
 table tr td .trash {
   color: white;
   background-color: red;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+table tr td .add {
+  color: white;
+  background-color: green;
+  padding: 10px;
+  border-radius: 6px;
+  text-decoration: none;
 }/*# sourceMappingURL=management.css.map */

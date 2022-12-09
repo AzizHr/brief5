@@ -3,13 +3,19 @@
 class Admin {
 
     static public function login($username , $password) {
-        $query = 'SELECT * FROM admin   WHERE username = :username AND password = :password';
+
+        try {
+            $query = 'SELECT * FROM admin   WHERE username = :username AND password = :password';
         $stmt = Db::connect()->prepare($query);
         $stmt->bindParam(":username", $username);
         $stmt->bindParam(":password", $password);
         $stmt->execute();
-        $res = $stmt->fetch();
-        return $res;
+        $admin = $stmt->fetch();
+        return $admin;
+        }catch (PDOException $e) {
+            return 'error' . $e->getMessage();
+        }
+        
     }
 
 }

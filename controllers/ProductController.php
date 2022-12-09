@@ -18,39 +18,38 @@ class ProductController{
         }
     }
 
-    // public function deleteOneProduct() {
-    //     if(isset($_POST['id'])) {
-    //         $data['id'] = $_POST['id'];
-    //         $product = Product::delete($data);
-    //         if($product === 'ok') {
-    //             Session::set('success', 'Employe Deleted');
-    //             Redirect::to('home');
-    //         }else {
-    //             echo $product;
-    //         }
-    //     }
-    // }
+    public function deleteOneProduct() {
+        if(isset($_POST['delete'])) {
+            if(isset($_POST['id'])) {
+                $data['id'] = $_POST['id'];
+                $product = Product::delete($data);
+                if($product === 'ok') {
+                    header('Location:management');
+                }else {
+                    echo $product;
+                }
+            }
+        }
+    }
 
-    // public function addProduct() {
-    //     if(isset($_POST['submit'])) {
-    //         $data = array(
-    //             'nom' => $_POST['nom'],
-    //             'prenom' => $_POST['prenom'],
-    //             'matricule' => $_POST['matricule'],
-    //             'poste' => $_POST['poste'],
-    //             'status' => $_POST['status']
-    //         );
+    public function addProduct() {
+        if(isset($_POST['add'])) {
+            $data = array(
+                'image' => $_POST['image'],
+                'name' => $_POST['name'],
+                'quantite' => $_POST['quantite'],
+                'price' => $_POST['price']
+            );
 
-    //         $result = Product::add($data);
+            $result = Product::add($data);
 
-    //         if($result === 'ok') {
-    //             Session::set('success', 'Employe Added');
-    //             Redirect::to('home');
-    //         }else {
-    //             echo $result;
-    //         }
-    //     }
-    // }
+            if($result === 'ok') {
+                header('Location:management');
+            }else {
+                echo $result;
+            }
+        }
+    }
 
     public function updateProduct() {
 
@@ -66,7 +65,7 @@ class ProductController{
             $result = Product::update($data);
 
             if($result === 'ok') {
-                header('Location:views/management');
+                header('Location:management');
             }else {
                 echo $result;
             }
@@ -74,7 +73,43 @@ class ProductController{
     }
 }
 
-$products = new ProductController();
-$product = $products->getAllProducts();
+function get_all_products() {
+    $products = new ProductController();
+    $_products = $products->getAllProducts();
+    return $_products;
+}
+
+function get_one_product() {
+    if(isset($_POST['id'])) {
+        $existProduct = new ProductController();
+        $getIt = $existProduct->getOneProduct();
+        return $getIt;
+    }
+}
+
+function update_one_product() {
+    if(isset($_POST['update'])) {
+        $update = new ProductController();
+        $update->updateProduct();
+    }
+}
+
+update_one_product();
+
+function add_new_product() {
+    if(isset($_POST['add'])) {
+        $add = new ProductController();
+        $add->addProduct();
+    }
+}
+
+add_new_product();
+
+function delete_one_product() {
+    $delete = new ProductController();
+    $delete->deleteOneProduct();
+}
+
+delete_one_product();
 
 

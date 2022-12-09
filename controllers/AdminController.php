@@ -7,19 +7,33 @@ class AdminController {
         if(isset($_POST['login'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $admin = Admin::login($username, $password);
 
-            if($admin['username'] == $username && $admin['password'] == $password) {
-                $management = new HomeController();
-                $management->index('management');
-            }
-            else {
-                echo 'error';
-            }
+            $admin = Admin::login($username, $password);
+            
+            return $admin;
+        }
+    }
+
+    public function logout() {
+        if(isset($_POST['logout'])) {
+            session_unset();
+            session_destroy();
+            header('Location:' . BASE_URL . 'login');
         }
     }
 
 }
 
-$admin = new AdminController();
-$admin->loginAdmin();
+function logging() {
+    if(isset($_POST['login'])) {
+        $admin = new AdminController();
+        $data = $admin->loginAdmin();
+        if($data){
+            $_SESSION['logged'] = $data['username'];
+            header('Location:' . BASE_URL . 'management');
+        }
+        
+        
+    }
+}
+logging();

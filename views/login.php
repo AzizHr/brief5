@@ -1,5 +1,6 @@
+<?php require_once 'controllers/AdminController.php' ?>
 <link rel="stylesheet" href="views/css/login.css">
-<form method="post">
+<form class="form" method="post">
     <h1>Welcome Back !!</h1>
     <div class="form-controll">
         <label>Username</label>
