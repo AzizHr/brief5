@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-form {
+.form {
   box-shadow: 0px 0px 10px 0px grey;
   padding: 60px;
   display: flex;
@@ -14,22 +14,22 @@ form {
   margin: 60px auto;
   row-gap: 40px;
 }
-form .form-controll {
+.form .form-controll {
   display: flex;
   flex-direction: column;
   row-gap: 6px;
 }
-form .form-controll label {
+.form .form-controll label {
   color: rgb(74, 74, 74);
 }
-form .form-controll input {
+.form .form-controll input {
   width: 320px;
   height: 40px;
   border: none;
   outline: 0.8px solid black;
   padding-left: 10px;
 }
-form button {
+.form button {
   width: 320px;
   height: 40px;
   border: none;

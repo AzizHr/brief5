@@ -3,13 +3,10 @@
 session_start();
     if(isset($_SESSION['logged'])) {
          $flag = 'Logout';
+         
     }else {
         $flag = 'Login';
     }
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +30,7 @@ session_start();
                 <li class="menu-item"><a href="">Home</a></li>
                 <li class="menu-item"><a href="">Products</a></li>
                 <li class="menu-item"><a href="">Contact</a></li>
-                <li class="menu-item"><form method="post"><button name="logout" type="submit"><?php echo $flag; ?></button></form></li>
+                <li class="menu-item"><form method="post"><button style="background-color: transparent; border: none; color:black; font-weight: bolder;" name="logout" type="submit"><?php echo $flag; ?></button></form></li>
             </ul>
         </div>
         <a class="fa-solid fa-bars menu-icon"></a>

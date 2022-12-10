@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-form {
+.update-form {
     display: flex;
     flex-direction: column;
     width: 70%;
@@ -47,7 +47,7 @@ form {
 }
 
 @media (max-width:768px) {
-    form {
+    .update-form {
         width: 90%;
         row-gap: 50px;
         .form-controll {

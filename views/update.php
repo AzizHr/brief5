@@ -2,7 +2,7 @@
 require_once 'controllers/ProductController.php';
 ?>
 <link rel="stylesheet" href="views/css/update.css">
-<form method="POST">
+<form class="update-form" method="POST">
 <h1 class="contact-heading">Update A Product</h1>
 
     <div class="form-controll">

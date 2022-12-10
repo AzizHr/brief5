@@ -1,4 +1,10 @@
 <?php require_once 'controllers/AdminController.php' ?>
+<?php 
+if(isset($_SESSION['logged'])) {
+    header('Location:' . BASE_URL . 'management');
+}
+
+?>
 <link rel="stylesheet" href="views/css/login.css">
 <form class="form" method="post">
     <h1>Welcome Back !!</h1>

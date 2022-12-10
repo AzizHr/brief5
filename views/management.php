@@ -13,7 +13,7 @@ $logout->logout();
 
 ?>
 <link rel="stylesheet" href="views/css/management.css">
-<h1>Admin Name : <?php echo $_SESSION['logged'] ?></h1>
+<p style="margin: 20px;">Admin : <?php echo $_SESSION['logged'] ?></p>
 <table>
     <tr><td><a href="<?php echo BASE_URL . 'add' ?>" class="fa fa-plus add"></a></td></tr>
     <tr>
