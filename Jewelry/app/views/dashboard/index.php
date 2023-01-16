@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="container mt-5">
-<a href="<?php echo URLROOT;  ?>products/add" class="btn btn-sm btn-success"><i class="fa fa-plus me-2"></i>Add New Port</a>
+<a href="<?php echo URLROOT;  ?>products/add" class="btn btn-sm btn-success"><i class="fa fa-plus me-2"></i>Add New Product</a>
 </div>
 <div class="mx-auto text-center my-5 overflow-scroll">
     <table class="container mt-5 table table-hover">
