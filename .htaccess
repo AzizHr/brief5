@@ -1,8 +1,0 @@
-Options All -Indexes
-
-RewriteEngine On
-
-RewriteBase /Jewelery/
-
-RewriteRule ^([-a-zA-Z0-9]+)$ index.php?page=$1
- 
