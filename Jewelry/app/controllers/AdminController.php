@@ -1,22 +1,23 @@
 <?php
 
-class Admin extends Controller {
+namespace App\controllers;
 
-  private $adminModel;
+use App\core\Controller;
+use App\models\Admin;
+
+class AdminController extends Controller 
+{
+  private $admin;
 
 public function __construct()
 {
-  $this->adminModel = $this->model('AdminModel');
+  $this->admin = new Admin;
 }
 public function auth()
   {
-    // Check for POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      // Process form
-      // Sanitize POST data
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-      // Init data
       $data = [
         'email' => trim($_POST['email']),
         'password' => trim($_POST['password']),
@@ -24,18 +25,15 @@ public function auth()
         'password_err' => '',
       ];
 
-      // Validate Email
       if (empty($data['email'])) {
         $data['email_err'] = 'Pleae enter email';
       }
 
-      // Validate Password
       if (empty($data['password'])) {
         $data['password_err'] = 'Please enter password';
       }
 
-      // Check for user/email
-      if ($this->adminModel->findAdminByEmail($data['email'])) {
+      if ($this->admin->findByEmail($data['email'])) {
         // User found
 
       } else {
@@ -47,7 +45,7 @@ public function auth()
       if (empty($data['email_err']) && empty($data['password_err'])) {
         // Validated
         // Check and set logged in user
-        $loggedInAdmin = $this->adminModel->login($data['email'], $data['password']);
+        $loggedInAdmin = $this->admin->login($data['email'], $data['password']);
 
         if ($loggedInAdmin) {
           // Create Session

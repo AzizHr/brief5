@@ -1,32 +1,38 @@
 <?php
+
+namespace App\controllers;
+
+use App\core\Controller;
+use App\models\Category;
+use App\models\Product;
+
 class Products extends Controller
 {
-    private $productModel;
-    private $categoryModel;
+    private $product;
+    private $category;
 
     public function __construct()
     {
-        $this->productModel = $this->model('Product');
-        $this->categoryModel = $this->model('Category');
+        $this->product = new Product;
+        $this->category = new Category;
     }
 
     public function index()
     {
-        if(!isset($_SESSION['admin_id'])){
+        if (!isset($_SESSION['admin_id'])) {
             redirect('admin/auth');
         }
-        $products = $this->productModel->getProducts();
+        $products = $this->product->all();
         $data['products'] = $products;
         $this->view('dashboard/index', $data);
     }
-    public function add()
+    public function store()
     {
-        // Check for POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $_POST = filter_input_array(INPUT_POST, 513);
 
-            $categories = $this->categoryModel->getCategories();
+            $categories = $this->category->getCategories();
 
             $data = [
                 'image' => $_FILES['image']['name'],
@@ -41,7 +47,7 @@ class Products extends Controller
                 'categories' => $categories
             ];
 
-            move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.$data['image']);
+            move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $data['image']);
 
             if (empty($data['image'])) {
                 $data['image'] = 'Pleae pick an image';
@@ -61,7 +67,7 @@ class Products extends Controller
             // Make sure errors are empty
             if (empty($data['image_err']) && empty($data['name_err']) && empty($data['quantite_err'])  && empty($data['price_err'])) {
 
-                if ($this->productModel->addProduct($data)) {
+                if ($this->product->create($data)) {
                     redirect('products/index');
                 } else {
                     die('Something went wrong');
@@ -71,10 +77,10 @@ class Products extends Controller
                 $this->view('dashboard/add', $data);
             }
         } else {
-            if(!isset($_SESSION['admin_id'])){
+            if (!isset($_SESSION['admin_id'])) {
                 redirect('admin/auth');
             }
-            $categories = $this->categoryModel->getCategories();
+            $categories = $this->category->getCategories();
             $data = [
                 'name' => '',
                 'quantite' => '',
@@ -110,7 +116,7 @@ class Products extends Controller
                 'price_err' => ''
             ];
 
-            
+
             if (empty($data['name'])) {
                 $data['name_err'] = 'Pleae enter a name';
             }
@@ -127,38 +133,36 @@ class Products extends Controller
             if (empty($data['name_err']) && empty($data['quantite_err'])  && empty($data['price_err'])) {
 
                 // die('Here 1');
-                if(empty($data['image'])) {
-                    if ($this->productModel->editProductWithoutImage($id , $data)) {
+                if (empty($data['image'])) {
+                    if ($this->product->updateWithoutImage($id, $data)) {
+                        redirect('products/index');
+                    } else {
+                        die('Something went wrong');
+                    }
+                } else {
+                    if ($this->product->update($id, $data)) {
+                        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $data['image']);
                         redirect('products/index');
                     } else {
                         die('Something went wrong');
                     }
                 }
-                else {
-                    if ($this->productModel->editProduct($id, $data)) {
-                        move_uploaded_file($_FILES['image']['tmp_name'] ,'uploads/' . $data['image']);
-                        redirect('products/index');
-                    } else {
-                        die('Something went wrong');
-                    }
-                }
-                
             } else {
                 // Load view with errors
                 $this->view('dashboard/edit', $data);
             }
         } else {
-            if(!isset($_SESSION['admin_id'])){
+            if (!isset($_SESSION['admin_id'])) {
                 redirect('admin/auth');
             }
-            $product = $this->productModel->getProduct($id);
-            $categories = $this->categoryModel->getcategories();
+            $product = $this->product->find($id);
+            $categories = $this->category->getcategories();
             $data = [
                 'image_err' => '',
                 'name_err' => '',
                 'quantite_err' => '',
                 'price_err' => '',
-                'categories' => $categories ,
+                'categories' => $categories,
                 'product' => $product
             ];
 
@@ -168,11 +172,11 @@ class Products extends Controller
     }
     public function get($id)
     {
-        if(!isset($_SESSION['admin_id'])){
+        if (!isset($_SESSION['admin_id'])) {
             redirect('admin/auth');
         }
-        $product = $this->productModel->getProduct($id);
-        $categories = $this->categoryModel->getcategories();
+        $product = $this->product->find($id);
+        $categories = $this->category->getcategories();
         $data = [
             'product' => $product,
             'categories' => $categories
@@ -183,10 +187,10 @@ class Products extends Controller
 
     public function delete($id)
     {
-        if(!isset($_SESSION['admin_id'])){
+        if (!isset($_SESSION['admin_id'])) {
             redirect('admin/auth');
         }
-        if ($this->productModel->deleteProduct($id)) {
+        if ($this->product->delete($id)) {
             redirect('products/index');
         } else {
             redirect('products/index');

@@ -1,9 +1,17 @@
 <?php
+
+namespace App\controllers;
+
+use App\core\Controller;
+use App\models\Product;
+
 class Pages extends Controller
 {
+  protected $product;
+
   public function __construct()
   {
-    $this->productModel = $this->model('Product');
+    $this->product = new Product;
   }
 
   public function index()
@@ -35,7 +43,7 @@ class Pages extends Controller
     if (isset($_SESSION['admin_id'])) {
       redirect('products/index');
     }
-    $products = $this->productModel->getProducts();
+    $products = $this->product->all();
     $data = [
       'products' => $products
     ];

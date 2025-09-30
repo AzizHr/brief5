@@ -1,4 +1,9 @@
 <?php
+
+namespace App\models;
+
+use App\core\Database;
+
 class Category
 {
     private $db;
@@ -8,17 +13,13 @@ class Category
         $this->db = new Database;
     }
 
-    // Get All Categories
-    public function getCategories(){
+    public function getCategories()
+    {
         $this->db->query('SELECT * FROM category');
 
         $row = $this->db->resultSet();
 
-        if ($row) {
-            return $row;
-        } else {
-            return false;
-        }
+        return $this->db->count() > 0 ? $row : false;
 
       }
 }
