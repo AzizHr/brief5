@@ -33,13 +33,10 @@ class Router
 
     foreach($this->routes as $route)
     {
-      if($route['url'] === $url && $route['method'] === $method)
+      if($url === $route['url'] && $method === $route['method'])
       {
         call_user_func($route['callback']);
-        return;
       }
-
-      echo 'Page not found';
     }
   }
 }

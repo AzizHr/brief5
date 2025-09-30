@@ -13,6 +13,12 @@ public function __construct()
 {
   $this->admin = new Admin;
 }
+
+public function showLogin()
+{
+  $this->view('admin/auth');
+}
+
 public function auth()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

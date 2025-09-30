@@ -2,9 +2,9 @@
 
 namespace App\core;
 
-class Controller
+class View
 {
-  public function view($view, $data = [])
+  public static function render($view, $data = [])
   {
     extract($data);
 
