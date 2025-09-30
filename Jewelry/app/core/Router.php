@@ -27,16 +27,34 @@ class Router
 
   public function route()
   {
+    $found = false;
+
     $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-    $method = strtoupper($_SERVER['REQUEST_METHOD']);
+    $requestMethod = strtoupper($_SERVER['REQUEST_METHOD']);
 
     foreach($this->routes as $route)
     {
-      if($url === $route['url'] && $method === $route['method'])
+      if($url === $route['url'] && $requestMethod === $route['method'])
       {
-        call_user_func($route['callback']);
+        $found = true;
+
+        if(is_array($route['callback']))
+        {
+          [$controller, $method] = $route['callback'];
+
+          $controller = new $controller();
+
+          call_user_func_array($controller->$method(), []);
+        } else {
+                  call_user_func($route['callback']);
+        }
+
+        break;
       }
     }
+
+    if(!$found)
+      echo 'Page Not Found';
   }
 }

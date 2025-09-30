@@ -24,14 +24,14 @@ class Product
     {
         $this->db->query('SELECT p.id , p.image , p.name , p.quantite , p.price , p.id_cat , c.id AS "cat_id" , c.name AS "cat_name" FROM product p , category c WHERE p.id_cat = c.id');
 
-        return $this->db->resultSet();
+        return $this->db->all();
       }
 
     public function find($id)
     {
         $this->db->query('SELECT * FROM product WHERE id = :id');
 
-        return $this->db->single($id);
+        return $this->db->single(['id' => $id]);
     }
 
 

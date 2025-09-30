@@ -44,9 +44,9 @@ class Database
     return $this->statement->execute($data);
   }
 
-  public function resultSet()
+  public function all($data = [])
   {
-    $this->execute();
+    $this->execute($data);
     return $this->statement->fetchAll(PDO::FETCH_OBJ);
   }
 

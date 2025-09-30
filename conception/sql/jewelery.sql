@@ -27,10 +27,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+CREATE TABLE `users` (
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100)
+  `password` varchar(100) NOT NULL,
+  `role` varchar(10) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -46,9 +48,9 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 -- Table structure for table `category`
 --
 
-CREATE TABLE `category` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
+CREATE TABLE `categories` (
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -66,13 +68,13 @@ INSERT INTO `category` (`id`, `name`) VALUES
 -- Table structure for table `product`
 --
 
-CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
-  `image` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
+CREATE TABLE `products` (
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `image` text NOT NULL,
+  `name` varchar(100) NOT NULL,
   `quantite` int(11) NOT NULL,
   `price` float NOT NULL,
-  `id_cat` int(11) DEFAULT NULL
+  `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -151,8 +153,8 @@ ALTER TABLE `product`
 --
 -- Constraints for table `product`
 --
-ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_cat`) REFERENCES `category` (`id`);
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_fk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
