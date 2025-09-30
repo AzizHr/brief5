@@ -1,13 +1,13 @@
 <?php
-  // DB Params
-  define('DB_HOST', 'localhost');
-  define('DB_USER', 'root');
-  define('DB_PASS', '');
-  define('DB_NAME', 'jewelery');
 
-  // App Root
+  define('DB_HOST', 'localhost');
+  define('DB_PORT', '5432');
+  define('DB_USER', 'aziz');
+  define('DB_PASS', 'Aziz*@12345');
+  define('DB_NAME', 'postgresy');
+
   define('APPROOT', dirname(dirname(__FILE__)));
-  // URL Root
-  define('URLROOT', 'http://localhost/Mhkif/');
-  // Site Name
+
+  define('URLROOT', 'http://localhost:8000/');
+
   define('SITENAME', 'Jewelry');
